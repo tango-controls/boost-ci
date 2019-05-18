@@ -180,15 +180,15 @@ build:
 build_script:
   # static libraries
   - cmd: cd C:/projects/boost_build/boost_1_64_0
-  - cmd: if %ARCH%==win32-msvc9 b2 --with-python variant=release toolset=msvc-9.0 address-model=32 threading=multi link=static runtime-link=static install
-  - cmd: if %ARCH%==x64-msvc9 b2 --with-python variant=release toolset=msvc-9.0 address-model=64 threading=multi link=static runtime-link=static install
-  - cmd: if %ARCH%==win32-msvc14 b2 --with-python variant=release toolset=msvc-14.0 address-model=32 threading=multi link=static runtime-link=static install
-  - cmd: if %ARCH%==x64-msvc14 b2 --with-python variant=release toolset=msvc-14.0 address-model=64 threading=multi link=static runtime-link=static install
+  - cmd: if %ARCH%==win32-msvc9 b2 -j4 --with-python variant=release toolset=msvc-9.0 address-model=32 threading=multi link=static runtime-link=static install
+  - cmd: if %ARCH%==x64-msvc9 b2 -j4 --with-python variant=release toolset=msvc-9.0 address-model=64 threading=multi link=static runtime-link=static install
+  - cmd: if %ARCH%==win32-msvc14 b2 -j4 --with-python variant=release toolset=msvc-14.0 address-model=32 threading=multi link=static runtime-link=static install
+  - cmd: if %ARCH%==x64-msvc14 b2 -j4 --with-python variant=release toolset=msvc-14.0 address-model=64 threading=multi link=static runtime-link=static install
   # shared libraries
-  - cmd: if %ARCH%==win32-msvc9 b2 --with-python variant=release toolset=msvc-9.0 address-model=32 threading=multi link=shared runtime-link=shared install
-  - cmd: if %ARCH%==x64-msvc9 b2 --with-python variant=release toolset=msvc-9.0 address-model=64 threading=multi link=shared runtime-link=shared install
-  - cmd: if %ARCH%==win32-msvc14 b2 --with-python variant=release toolset=msvc-14.0 address-model=32 threading=multi link=shared runtime-link=shared install
-  - cmd: if %ARCH%==x64-msvc14 b2 --with-python variant=release toolset=msvc-14.0 address-model=64 threading=multi link=shared runtime-link=shared install
+  - cmd: if %ARCH%==win32-msvc9 b2 -j4 --with-python variant=release toolset=msvc-9.0 address-model=32 threading=multi link=shared runtime-link=shared install
+  - cmd: if %ARCH%==x64-msvc9 b2 -j4 --with-python variant=release toolset=msvc-9.0 address-model=64 threading=multi link=shared runtime-link=shared install
+  - cmd: if %ARCH%==win32-msvc14 b2 -j4 --with-python variant=release toolset=msvc-14.0 address-model=32 threading=multi link=shared runtime-link=shared install
+  - cmd: if %ARCH%==x64-msvc14 b2 -j4 --with-python variant=release toolset=msvc-14.0 address-model=64 threading=multi link=shared runtime-link=shared install
 
 
 after_build:
