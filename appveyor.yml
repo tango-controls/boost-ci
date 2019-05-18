@@ -104,7 +104,7 @@ environment:
       IDL_BIN: C:\Program Files\tangoidl
       OMNI_BASE: C:\projects\omniORB-4.2.1
       BOOST_CFG: >-
-          using python : 3.7 : c:/python36/python.exe : c:/python37/include : c:/python37/libs ;
+          using python : 3.7 : c:/python37/python.exe : c:/python37/include : c:/python37/libs ;
     - platform: x64
       ARCH: x64-msvc14
       configuration: Release
