@@ -196,14 +196,21 @@ build:
   verbosity: minimal
   
 build_script:
+  # static libraries
   - cmd: cd C:/projects/boost_build/boost_1_64_0
-  - cmd: if %ARCH%==win32-msvc9 b2 toolset=msvc-9.0 address-model=32 install link=static runtime-link=static,shared
-  - cmd: if %ARCH%==x64-msvc9 b2 toolset=msvc-9.0 address-model=64 install link=static runtime-link=static,shared
-  - cmd: if %ARCH%==win32-msvc10 b2 toolset=msvc-10.0 address-model=32 install link=static runtime-link=static,shared
-  - cmd: if %ARCH%==x64-msvc10 b2 toolset=msvc-10.0 address-model=64 install link=static runtime-link=static,shared
-  - cmd: if %ARCH%==x64-msvc12 b2 toolset=msvc-12.0 address-model=64 install link=static runtime-link=static,shared
-  - cmd: if %ARCH%==x64-msvc14 b2 toolset=msvc-14.0 address-model=64 install link=static runtime-link=static,shared
-
+  - cmd: if %ARCH%==win32-msvc9 b2 --with-python toolset=msvc-9.0 address-model=32 install link=static runtime-link=static
+  - cmd: if %ARCH%==x64-msvc9 b2 --with-python toolset=msvc-9.0 address-model=64 install link=static runtime-link=static
+  - cmd: if %ARCH%==win32-msvc10 b2 --with-python toolset=msvc-10.0 address-model=32 install link=static runtime-link=static
+  - cmd: if %ARCH%==x64-msvc10 b2 --with-python toolset=msvc-10.0 address-model=64 install link=static runtime-link=static
+  - cmd: if %ARCH%==x64-msvc12 b2 --with-python toolset=msvc-12.0 address-model=64 install link=static runtime-link=static
+  - cmd: if %ARCH%==x64-msvc14 b2 --with-python toolset=msvc-14.0 address-model=64 install link=static runtime-link=static
+  # shared libraries
+  - cmd: if %ARCH%==win32-msvc9 b2 --with-python toolset=msvc-9.0 address-model=32 install link=shared runtime-link=shared
+  - cmd: if %ARCH%==x64-msvc9 b2 --with-python toolset=msvc-9.0 address-model=64 install link=shared runtime-link=shared
+  - cmd: if %ARCH%==win32-msvc10 b2 --with-python toolset=msvc-10.0 address-model=32 install link=shared runtime-link=shared
+  - cmd: if %ARCH%==x64-msvc10 b2 --with-python toolset=msvc-10.0 address-model=64 install link=shared runtime-link=shared
+  - cmd: if %ARCH%==x64-msvc12 b2 --with-python toolset=msvc-12.0 address-model=64 install link=shared runtime-link=shared
+  - cmd: if %ARCH%==x64-msvc14 b2 --with-python toolset=msvc-14.0 address-model=64 install link=shared runtime-link=shared
 
 
 after_build:
