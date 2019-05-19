@@ -8,69 +8,51 @@ image: Visual Studio 2015
 environment:
   matrix:
     - platform: win32
+      ADDR_MODEL: 32
       ARCH: win32-msvc9
-      configuration: Release
-      MSVCVERSION: v90
-      MSVCYEAR: "vs2008"
-      MSVCABR: "9"
-      VC_VER: 9.0
+      MSVCVERSION: 9.0
       PYTHONPATH: c:\Python27\
       PY_VER: 27
       BOOST_CFG: >-
           using python : 2.7 : c:/python27/python.exe : c:/python27/include : c:/python27/libs ;
     - platform: x64
+      ADDR_MODEL: 64
       ARCH: x64-msvc9
-      configuration: Release
-      MSVCVERSION: v90
-      MSVCYEAR: "vs2008"
-      MSVCABR: "9"
-      VC_VER: 9.0
+      MSVCVERSION: 9.0
       PYTHONPATH: c:\Python27-x64\
       PY_VER: 27
       BOOST_CFG: >-
           using python : 2.7 : c:/python27-x64/python.exe : c:/python27-x64/include : c:/python27-x64/libs ;
 
     - platform: win32
+      ADDR_MODEL: 32
       ARCH: win32-msvc14
-      configuration: Release
-      MSVCVERSION: v140
-      MSVCYEAR: "vs2015"
-      MSVCABR: "14"
-      VC_VER: 14.0
+      MSVCVERSION: 14.0
       PYTHONPATH: c:\Python36\
       PY_VER: 36
       BOOST_CFG: >-
           using python : 3.6 : c:/python36/python.exe : c:/python36/include : c:/python36/libs ;
     - platform: x64
+      ADDR_MODEL: 64
       ARCH: x64-msvc14
-      configuration: Release
-      MSVCVERSION: v140
-      MSVCYEAR: "vs2015"
-      MSVCABR: "14"
-      VC_VER: 14.0
+      MSVCVERSION: 14.0
       PYTHONPATH: c:\Python36-x64\
       PY_VER: 36
       BOOST_CFG: >-
           using python : 3.6 : c:/python36-x64/python.exe : c:/python36-x64/include : c:/python36-x64/libs ;
 
     - platform: win32
+      ADDR_MODEL: 32
       ARCH: win32-msvc14
-      configuration: Release
-      MSVCVERSION: v140
-      MSVCYEAR: "vs2015"
-      MSVCABR: "14"
-      VC_VER: 14.0
+      MSVCVERSION: 14.0
       PYTHONPATH: c:\Python37-x64\
       PY_VER: 37
       BOOST_CFG: >-
           using python : 3.7 : c:/python37/python.exe : c:/python37/include : c:/python37/libs ;
     - platform: x64
+      ADDR_MODEL: 64
       ARCH: x64-msvc14
-      configuration: Release
-      MSVCVERSION: v140
-      MSVCYEAR: "vs2015"
-      MSVCABR: "14"
-      VC_VER: 14.0
+      MSVCVERSION: 14.0
       PYTHONPATH: c:\Python37-x64\
       PY_VER: 37
       BOOST_CFG: >-
@@ -122,17 +104,11 @@ build:
   verbosity: minimal
   
 build_script:
-  # static libraries
   - cmd: cd C:/projects/boost_build/boost_1_70_0
-  - cmd: if %ARCH%==win32-msvc9 b2 -j4 --with-python variant=release toolset=msvc-9.0 address-model=32 threading=multi link=static runtime-link=static install
-  - cmd: if %ARCH%==x64-msvc9 b2 -j4 --with-python variant=release toolset=msvc-9.0 address-model=64 threading=multi link=static runtime-link=static install
-  - cmd: if %ARCH%==win32-msvc14 b2 -j4 --with-python variant=release toolset=msvc-14.0 address-model=32 threading=multi link=static runtime-link=static install
-  - cmd: if %ARCH%==x64-msvc14 b2 -j4 --with-python variant=release toolset=msvc-14.0 address-model=64 threading=multi link=static runtime-link=static install
+  # static libraries
+  - cmd: b2 -j4 --with-python variant=release toolset=msvc-%MSVCVERSION% address-model=%ADDR_MODEL% threading=multi link=static runtime-link=static install
   # shared libraries
-  - cmd: if %ARCH%==win32-msvc9 b2 -j4 --with-python variant=release toolset=msvc-9.0 address-model=32 threading=multi link=shared runtime-link=shared install
-  - cmd: if %ARCH%==x64-msvc9 b2 -j4 --with-python variant=release toolset=msvc-9.0 address-model=64 threading=multi link=shared runtime-link=shared install
-  - cmd: if %ARCH%==win32-msvc14 b2 -j4 --with-python variant=release toolset=msvc-14.0 address-model=32 threading=multi link=shared runtime-link=shared install
-  - cmd: if %ARCH%==x64-msvc14 b2 -j4 --with-python variant=release toolset=msvc-14.0 address-model=64 threading=multi link=shared runtime-link=shared install
+  - cmd: b2 -j4 --with-python variant=release toolset=msvc-%MSVCVERSION% address-model=%ADDR_MODEL% threading=multi link=shared runtime-link=shared install
 
 
 after_build:
