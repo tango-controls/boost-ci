@@ -111,7 +111,7 @@ install:
   - cmd: cd C:/projects/boost_1_70_0
   - cmd: C:/projects/boost_1_70_0/bootstrap.bat
   
-clone_folder: C:\projects\boost_1_70_0
+clone_folder: C:\projects\boost-ci
 
 build:
   parallel: true
