@@ -138,8 +138,8 @@ build_script:
 after_build:
   - cmd: cd C:/boost
   - cmd: dir
-  - 7z a boost-1.70.0_%ARCH%_%PY_VER%.zip C:/boost
-  - move boost-1.70.0_%ARCH%_%PY_VER%.zip c:/projects/boost-ci/
+  - 7z a boost-python-1.70.0_%ARCH%_py%PY_VER%.zip C:/boost
+  - move boost-python-1.70.0_%ARCH%_py%PY_VER%.zip c:/projects/boost-ci/
 
 
 on_finish:
