@@ -85,18 +85,22 @@ init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   # Boost
   - cmd: cd "C:\projects\"
+  - cmd: md boost_build
   - appveyor DownloadFile https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.zip
-  - cmd: 7z -y x boost_1_70_0.zip -oC:\projects\
-  #VS2008 patch
+  - cmd: 7z -y x boost_1_70_0.zip -oC:\projects\boost_build\
+
+  # VS2008 patch
   - cmd: cd "C:\projects\"
   - cmd: appveyor DownloadFile https://github.com/menpo/condaci/raw/master/vs2008_patch.zip
   - cmd: 7z -y x vs2008_patch.zip -oC:\projects\vs2008_patch\
   - cmd: if %ARCH%==x64-msvc9 call C:\projects\vs2008_patch\setup_x64.bat
   - cmd: if %ARCH%==x32-msvc9 call C:\projects\vs2008_patch\setup_x86.bat
   - cmd: if %ARCH%==x64-msvc9 copy "C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\vcvars64.bat" "C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\amd64\vcvarsamd64.bat"
+
   # adding a boost-config.jam file
   - cmd: echo %BOOST_CFG% >> %HOMEDRIVE%%HOMEPATH%\user-config.jam
   - cmd: type %HOMEDRIVE%%HOMEPATH%\user-config.jam
+  - cmd: cd "C:\projects\boost-ci"
   
 install:
   # Setting Visual Compiler
@@ -108,10 +112,10 @@ install:
   - cmd: echo "Platform='%Platform%'"
   - cmd: set PYTHONPATH=%PYTHONPATH%
   # building bootstrap
-  - cmd: cd C:/projects/boost_1_70_0
-  - cmd: C:/projects/boost_1_70_0/bootstrap.bat
-  
-#clone_folder: C:\projects\boost-ci
+  - cmd: cd C:/projects/boost_build/boost_1_70_0
+  - cmd: C:/projects/boost_build/boost_1_70_0/bootstrap.bat
+
+clone_folder: C:\projects\boost-ci
 
 build:
   parallel: true
@@ -119,7 +123,7 @@ build:
   
 build_script:
   # static libraries
-  - cmd: cd C:/projects/boost_1_70_0
+  - cmd: cd C:/projects/boost_build/boost_1_70_0
   - cmd: if %ARCH%==win32-msvc9 b2 -j4 --with-python variant=release toolset=msvc-9.0 address-model=32 threading=multi link=static runtime-link=static install
   - cmd: if %ARCH%==x64-msvc9 b2 -j4 --with-python variant=release toolset=msvc-9.0 address-model=64 threading=multi link=static runtime-link=static install
   - cmd: if %ARCH%==win32-msvc14 b2 -j4 --with-python variant=release toolset=msvc-14.0 address-model=32 threading=multi link=static runtime-link=static install
