@@ -3,14 +3,14 @@ branches:
   only:
     - master
 
-image: Visual Studio 2019
+image: Visual Studio 2015
 
 environment:
   matrix:
     - platform: win32
       ADDR_MODEL: 32
       ARCH: win32-msvc14
-      MSVCVERSION: 14.2
+      MSVCVERSION: 14.0
       PYTHONPATH: c:\Python36\
       PY_VER: 36
       BOOST_CFG: >-
@@ -18,7 +18,7 @@ environment:
     - platform: x64
       ADDR_MODEL: 64
       ARCH: x64-msvc14
-      MSVCVERSION: 14.2
+      MSVCVERSION: 14.0
       PYTHONPATH: c:\Python36-x64\
       PY_VER: 36
       BOOST_CFG: >-
@@ -27,7 +27,7 @@ environment:
     - platform: win32
       ADDR_MODEL: 32
       ARCH: win32-msvc14
-      MSVCVERSION: 14.2
+      MSVCVERSION: 14.0
       PYTHONPATH: c:\Python37\
       PY_VER: 37
       BOOST_CFG: >-
@@ -35,16 +35,16 @@ environment:
     - platform: x64
       ADDR_MODEL: 64
       ARCH: x64-msvc14
-      MSVCVERSION: 14.2
+      MSVCVERSION: 14.0
       PYTHONPATH: c:\Python37-x64\
       PY_VER: 37
       BOOST_CFG: >-
           using python : 3.7 : c:/python37-x64/python.exe : c:/python37-x64/include : c:/python37-x64/libs ;
-          
+
     - platform: win32
       ADDR_MODEL: 32
       ARCH: win32-msvc14
-      MSVCVERSION: 14.2
+      MSVCVERSION: 14.0
       PYTHONPATH: c:\Python38\
       PY_VER: 38
       BOOST_CFG: >-
@@ -52,7 +52,7 @@ environment:
     - platform: x64
       ADDR_MODEL: 64
       ARCH: x64-msvc14
-      MSVCVERSION: 14.2
+      MSVCVERSION: 14.0
       PYTHONPATH: c:\Python38-x64\
       PY_VER: 38
       BOOST_CFG: >-
@@ -71,7 +71,7 @@ init:
   - cmd: echo %BOOST_CFG% >> %HOMEDRIVE%%HOMEPATH%\user-config.jam
   - cmd: type %HOMEDRIVE%%HOMEPATH%\user-config.jam
   - cmd: cd "C:\projects\boost-ci"
-  
+
 install:
   # Setting Visual Compiler
   - cmd: echo "Platform='%Platform%'"
@@ -85,7 +85,7 @@ clone_folder: C:\projects\boost-ci
 build:
   parallel: true
   verbosity: minimal
-  
+
 build_script:
   - cmd: cd C:/projects/boost_build/boost_1_73_0
   # static libraries
