@@ -162,7 +162,6 @@ build_script:
   # shared libraries
   - cmd: b2 -j4 --with-python variant=release toolset=msvc-%MSVCVERSION% address-model=%ADDR_MODEL% threading=multi link=shared runtime-link=shared install
 
-
 after_build:
   - cmd: cd C:/boost
   - cmd: dir
