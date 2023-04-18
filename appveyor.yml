@@ -122,7 +122,6 @@ environment:
       BOOST_CFG: >-
           using python : 3.11 : c:/python311-x64/python.exe : c:/python311-x64/include : c:/python311-x64/libs ;
 
-
 init:
   - cmd: set BOOST_VERSION_UNDERSCORED=%BOOST_VERSION:.=_%
   - cmd: echo %BOOST_VERSION_UNDERSCORED%
