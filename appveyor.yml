@@ -4,60 +4,76 @@ branches:
     - master
     - support-new-python-versions
 
-image: Visual Studio 2015
+image: Visual Studio 2017
 
 environment:
   matrix:
+    # - platform: win32
+    #   ADDR_MODEL: 32
+    #   ARCH: win32-msvc14
+    #   MSVCVERSION: 14.0
+    #   PYTHONPATH: c:\Python36\
+    #   PY_VER: 36
+    #   BOOST_CFG: >-
+    #       using python : 3.6 : c:/python36/python.exe : c:/python36/include : c:/python36/libs ;
+    # - platform: x64
+    #   ADDR_MODEL: 64
+    #   ARCH: x64-msvc14
+    #   MSVCVERSION: 14.0
+    #   PYTHONPATH: c:\Python36-x64\
+    #   PY_VER: 36
+    #   BOOST_CFG: >-
+    #       using python : 3.6 : c:/python36-x64/python.exe : c:/python36-x64/include : c:/python36-x64/libs ;
+
+    # - platform: win32
+    #   ADDR_MODEL: 32
+    #   ARCH: win32-msvc14
+    #   MSVCVERSION: 14.0
+    #   PYTHONPATH: c:\Python37\
+    #   PY_VER: 37
+    #   BOOST_CFG: >-
+    #       using python : 3.7 : c:/python37/python.exe : c:/python37/include : c:/python37/libs ;
+    # - platform: x64
+    #   ADDR_MODEL: 64
+    #   ARCH: x64-msvc14
+    #   MSVCVERSION: 14.0
+    #   PYTHONPATH: c:\Python37-x64\
+    #   PY_VER: 37
+    #   BOOST_CFG: >-
+    #       using python : 3.7 : c:/python37-x64/python.exe : c:/python37-x64/include : c:/python37-x64/libs ;
+
+    # - platform: win32
+    #   ADDR_MODEL: 32
+    #   ARCH: win32-msvc14
+    #   MSVCVERSION: 14.0
+    #   PYTHONPATH: c:\Python38\
+    #   PY_VER: 38
+    #   BOOST_CFG: >-
+    #       using python : 3.8 : c:/python38/python.exe : c:/python38/include : c:/python38/libs ;
+    # - platform: x64
+    #   ADDR_MODEL: 64
+    #   ARCH: x64-msvc14
+    #   MSVCVERSION: 14.0
+    #   PYTHONPATH: c:\Python38-x64\
+    #   PY_VER: 38
+    #   BOOST_CFG: >-
+    #       using python : 3.8 : c:/python38-x64/python.exe : c:/python38-x64/include : c:/python38-x64/libs ;
     - platform: win32
       ADDR_MODEL: 32
       ARCH: win32-msvc14
       MSVCVERSION: 14.0
-      PYTHONPATH: c:\Python36\
-      PY_VER: 36
+      PYTHONPATH: c:\Python39\
+      PY_VER: 39
       BOOST_CFG: >-
-          using python : 3.6 : c:/python36/python.exe : c:/python36/include : c:/python36/libs ;
+          using python : 3.9 : c:/python39/python.exe : c:/python39/include : c:/python39/libs ;
     - platform: x64
       ADDR_MODEL: 64
       ARCH: x64-msvc14
       MSVCVERSION: 14.0
-      PYTHONPATH: c:\Python36-x64\
-      PY_VER: 36
-      BOOST_CFG: >-
-          using python : 3.6 : c:/python36-x64/python.exe : c:/python36-x64/include : c:/python36-x64/libs ;
-
-    - platform: win32
-      ADDR_MODEL: 32
-      ARCH: win32-msvc14
-      MSVCVERSION: 14.0
-      PYTHONPATH: c:\Python37\
-      PY_VER: 37
-      BOOST_CFG: >-
-          using python : 3.7 : c:/python37/python.exe : c:/python37/include : c:/python37/libs ;
-    - platform: x64
-      ADDR_MODEL: 64
-      ARCH: x64-msvc14
-      MSVCVERSION: 14.0
-      PYTHONPATH: c:\Python37-x64\
-      PY_VER: 37
-      BOOST_CFG: >-
-          using python : 3.7 : c:/python37-x64/python.exe : c:/python37-x64/include : c:/python37-x64/libs ;
-
-    - platform: win32
-      ADDR_MODEL: 32
-      ARCH: win32-msvc14
-      MSVCVERSION: 14.0
-      PYTHONPATH: c:\Python38\
+      PYTHONPATH: c:\Python39-x64\
       PY_VER: 38
       BOOST_CFG: >-
-          using python : 3.8 : c:/python38/python.exe : c:/python38/include : c:/python38/libs ;
-    - platform: x64
-      ADDR_MODEL: 64
-      ARCH: x64-msvc14
-      MSVCVERSION: 14.0
-      PYTHONPATH: c:\Python38-x64\
-      PY_VER: 38
-      BOOST_CFG: >-
-          using python : 3.8 : c:/python38-x64/python.exe : c:/python38-x64/include : c:/python38-x64/libs ;
+          using python : 3.9 : c:/python39-x64/python.exe : c:/python39-x64/include : c:/python39-x64/libs ;
 
 init:
   - cmd: echo "List all projects and Python versions"
