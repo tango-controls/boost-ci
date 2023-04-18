@@ -68,7 +68,7 @@ init:
   # Boost
   - cmd: cd "C:\projects\"
   - cmd: md boost_build
-  - appveyor DownloadFile https://dl.bintray.com/boostorg/release/1.73.0/source/boost_1_73_0.zip
+  - appveyor DownloadFile https://boostorg.jfrog.io/artifactory/main/release/1.73.0/source/boost_1_73_0.zip
   - cmd: 7z -y x boost_1_73_0.zip -oC:\projects\boost_build\
 
   # adding a boost-config.jam file
