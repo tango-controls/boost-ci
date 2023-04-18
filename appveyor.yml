@@ -58,17 +58,19 @@ environment:
     #   PY_VER: 38
     #   BOOST_CFG: >-
     #       using python : 3.8 : c:/python38-x64/python.exe : c:/python38-x64/include : c:/python38-x64/libs ;
-    - platform: win32
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: win32
       ADDR_MODEL: 32
-      ARCH: win32-msvc14
+      ARCH: v142_x86
       MSVCVERSION: 14.2
       PYTHONPATH: c:\Python39\
       PY_VER: 39
       BOOST_CFG: >-
           using python : 3.9 : c:/python39/python.exe : c:/python39/include : c:/python39/libs ;
-    - platform: x64
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: x64
       ADDR_MODEL: 64
-      ARCH: x64-msvc14
+      ARCH: v142_x64
       MSVCVERSION: 14.2
       PYTHONPATH: c:\Python39-x64\
       PY_VER: 38
@@ -84,8 +86,8 @@ init:
   # Boost
   - cmd: cd "C:\projects\"
   - cmd: md boost_build
-  - appveyor DownloadFile https://boostorg.jfrog.io/artifactory/main/release/1.73.0/source/boost_1_73_0.zip
-  - cmd: 7z -y x boost_1_73_0.zip -oC:\projects\boost_build\
+  - appveyor DownloadFile https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.zip
+  - cmd: 7z -y x boost_1_82_0.zip -oC:\projects\boost_build\
 
   # adding a boost-config.jam file
   - cmd: echo %BOOST_CFG% >> %HOMEDRIVE%%HOMEPATH%\user-config.jam
@@ -97,8 +99,8 @@ install:
   - cmd: echo "Platform='%Platform%'"
   - cmd: set PYTHONPATH=%PYTHONPATH%
   # building bootstrap
-  - cmd: cd C:/projects/boost_build/boost_1_73_0
-  - cmd: C:/projects/boost_build/boost_1_73_0/bootstrap.bat
+  - cmd: cd C:/projects/boost_build/boost_1_82_0
+  - cmd: C:/projects/boost_build/boost_1_82_0/bootstrap.bat
 
 clone_folder: C:\projects\boost-ci
 
@@ -107,7 +109,7 @@ build:
   verbosity: minimal
 
 build_script:
-  - cmd: cd C:/projects/boost_build/boost_1_73_0
+  - cmd: cd C:/projects/boost_build/boost_1_82_0
   # static libraries
   - cmd: b2 -j4 --with-python variant=release toolset=msvc-%MSVCVERSION% address-model=%ADDR_MODEL% threading=multi link=static runtime-link=static install
   # shared libraries
@@ -117,8 +119,8 @@ build_script:
 after_build:
   - cmd: cd C:/boost
   - cmd: dir
-  - 7z a boost-python-1.73.0_%ARCH%_py%PY_VER%.zip C:/boost
-  - move boost-python-1.73.0_%ARCH%_py%PY_VER%.zip c:/projects/boost-ci/
+  - 7z a boost-python-1.82.0_%ARCH%_py%PY_VER%.zip C:/boost
+  - move boost-python-1.82.0_%ARCH%_py%PY_VER%.zip c:/projects/boost-ci/
 
 
 on_finish:
