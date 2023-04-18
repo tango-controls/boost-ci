@@ -61,7 +61,7 @@ environment:
     - platform: win32
       ADDR_MODEL: 32
       ARCH: win32-msvc14
-      MSVCVERSION: 14.0
+      MSVCVERSION: 14.2
       PYTHONPATH: c:\Python39\
       PY_VER: 39
       BOOST_CFG: >-
@@ -69,7 +69,7 @@ environment:
     - platform: x64
       ADDR_MODEL: 64
       ARCH: x64-msvc14
-      MSVCVERSION: 14.0
+      MSVCVERSION: 14.2
       PYTHONPATH: c:\Python39-x64\
       PY_VER: 38
       BOOST_CFG: >-
