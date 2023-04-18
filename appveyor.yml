@@ -6,6 +6,7 @@ branches:
 
 environment:
   BOOST_VERSION: "1.82.0"
+  BOOST_VERSION_UNDERSCORED: "1_82_0"
   matrix:
   # # Python 3.6
   #   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
@@ -123,7 +124,6 @@ environment:
           using python : 3.11 : c:/python311-x64/python.exe : c:/python311-x64/include : c:/python311-x64/libs ;
 
 init:
-  - cmd: set BOOST_VERSION_UNDERSCORED=%BOOST_VERSION:.=_%
   - cmd: echo %BOOST_VERSION_UNDERSCORED%
   - cmd: echo "List all projects and Python versions"
   - cmd: dir "C:\projects\"
