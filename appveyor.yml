@@ -59,6 +59,9 @@ environment:
           using python : 3.8 : c:/python38-x64/python.exe : c:/python38-x64/include : c:/python38-x64/libs ;
 
 init:
+  - cmd: echo "List all projects and python versions"
+  - cmd: dir "C:\projects\"
+  - cmd: dir "C:\"
   #RDP from start
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   # Boost
