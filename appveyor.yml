@@ -2,61 +2,131 @@ version: 1.0.{build}
 branches:
   only:
     - master
-
-image: Visual Studio 2015
+    - support-new-python-versions
 
 environment:
+  BOOST_VERSION: "1.82.0"
+  BOOST_VERSION_UNDERSCORED: "1_82_0"
   matrix:
-    - platform: win32
+  # Python 3.6
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: win32
       ADDR_MODEL: 32
-      ARCH: win32-msvc14
-      MSVCVERSION: 14.0
+      ARCH: v142_x86
+      MSVCVERSION: 14.2
       PYTHONPATH: c:\Python36\
       PY_VER: 36
       BOOST_CFG: >-
           using python : 3.6 : c:/python36/python.exe : c:/python36/include : c:/python36/libs ;
-    - platform: x64
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: x64
       ADDR_MODEL: 64
-      ARCH: x64-msvc14
-      MSVCVERSION: 14.0
+      ARCH: v142_x64
+      MSVCVERSION: 14.2
       PYTHONPATH: c:\Python36-x64\
       PY_VER: 36
       BOOST_CFG: >-
           using python : 3.6 : c:/python36-x64/python.exe : c:/python36-x64/include : c:/python36-x64/libs ;
 
-    - platform: win32
+  # Python 3.7
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: win32
       ADDR_MODEL: 32
-      ARCH: win32-msvc14
-      MSVCVERSION: 14.0
+      ARCH: v142_x86
+      MSVCVERSION: 14.2
       PYTHONPATH: c:\Python37\
       PY_VER: 37
       BOOST_CFG: >-
           using python : 3.7 : c:/python37/python.exe : c:/python37/include : c:/python37/libs ;
-    - platform: x64
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: x64
       ADDR_MODEL: 64
-      ARCH: x64-msvc14
-      MSVCVERSION: 14.0
+      ARCH: v142_x64
+      MSVCVERSION: 14.2
       PYTHONPATH: c:\Python37-x64\
       PY_VER: 37
       BOOST_CFG: >-
           using python : 3.7 : c:/python37-x64/python.exe : c:/python37-x64/include : c:/python37-x64/libs ;
 
-    - platform: win32
+  # Python 3.8
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: win32
       ADDR_MODEL: 32
-      ARCH: win32-msvc14
-      MSVCVERSION: 14.0
+      ARCH: v142_x86
+      MSVCVERSION: 14.2
       PYTHONPATH: c:\Python38\
       PY_VER: 38
       BOOST_CFG: >-
           using python : 3.8 : c:/python38/python.exe : c:/python38/include : c:/python38/libs ;
-    - platform: x64
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: x64
       ADDR_MODEL: 64
-      ARCH: x64-msvc14
-      MSVCVERSION: 14.0
+      ARCH: v142_x64
+      MSVCVERSION: 14.2
       PYTHONPATH: c:\Python38-x64\
       PY_VER: 38
       BOOST_CFG: >-
           using python : 3.8 : c:/python38-x64/python.exe : c:/python38-x64/include : c:/python38-x64/libs ;
+
+  # Python 3.9
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: win32
+      ADDR_MODEL: 32
+      ARCH: v142_x86
+      MSVCVERSION: 14.2
+      PYTHONPATH: c:\Python39\
+      PY_VER: 39
+      BOOST_CFG: >-
+          using python : 3.9 : c:/python39/python.exe : c:/python39/include : c:/python39/libs ;
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: x64
+      ADDR_MODEL: 64
+      ARCH: v142_x64
+      MSVCVERSION: 14.2
+      PYTHONPATH: c:\Python39-x64\
+      PY_VER: 39
+      BOOST_CFG: >-
+          using python : 3.9 : c:/python39-x64/python.exe : c:/python39-x64/include : c:/python39-x64/libs ;
+
+  # Python 3.10
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: win32
+      ADDR_MODEL: 32
+      ARCH: v142_x86
+      MSVCVERSION: 14.2
+      PYTHONPATH: c:\Python310\
+      PY_VER: 310
+      BOOST_CFG: >-
+          using python : 3.10 : c:/python310/python.exe : c:/python310/include : c:/python310/libs ;
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: x64
+      ADDR_MODEL: 64
+      ARCH: v142_x64
+      MSVCVERSION: 14.2
+      PYTHONPATH: c:\Python310-x64\
+      PY_VER: 310
+      BOOST_CFG: >-
+          using python : 3.10 : c:/python310-x64/python.exe : c:/python310-x64/include : c:/python310-x64/libs ;
+
+  # Python 3.11
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: win32
+      ADDR_MODEL: 32
+      ARCH: v142_x86
+      MSVCVERSION: 14.2
+      PYTHONPATH: c:\Python311\
+      PY_VER: 311
+      BOOST_CFG: >-
+          using python : 3.11 : c:/python311/python.exe : c:/python311/include : c:/python311/libs ;
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: x64
+      ADDR_MODEL: 64
+      ARCH: v142_x64
+      MSVCVERSION: 14.2
+      PYTHONPATH: c:\Python311-x64\
+      PY_VER: 311
+      BOOST_CFG: >-
+          using python : 3.11 : c:/python311-x64/python.exe : c:/python311-x64/include : c:/python311-x64/libs ;
 
 init:
   #RDP from start
@@ -64,8 +134,8 @@ init:
   # Boost
   - cmd: cd "C:\projects\"
   - cmd: md boost_build
-  - appveyor DownloadFile https://dl.bintray.com/boostorg/release/1.73.0/source/boost_1_73_0.zip
-  - cmd: 7z -y x boost_1_73_0.zip -oC:\projects\boost_build\
+  - appveyor DownloadFile https://boostorg.jfrog.io/artifactory/main/release/%BOOST_VERSION%/source/boost_%BOOST_VERSION_UNDERSCORED%.zip
+  - cmd: 7z -y x boost_%BOOST_VERSION_UNDERSCORED%.zip -oC:\projects\boost_build\
 
   # adding a boost-config.jam file
   - cmd: echo %BOOST_CFG% >> %HOMEDRIVE%%HOMEPATH%\user-config.jam
@@ -77,8 +147,8 @@ install:
   - cmd: echo "Platform='%Platform%'"
   - cmd: set PYTHONPATH=%PYTHONPATH%
   # building bootstrap
-  - cmd: cd C:/projects/boost_build/boost_1_73_0
-  - cmd: C:/projects/boost_build/boost_1_73_0/bootstrap.bat
+  - cmd: cd C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%
+  - cmd: C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%/bootstrap.bat
 
 clone_folder: C:\projects\boost-ci
 
@@ -87,19 +157,17 @@ build:
   verbosity: minimal
 
 build_script:
-  - cmd: cd C:/projects/boost_build/boost_1_73_0
+  - cmd: cd C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%
   # static libraries
   - cmd: b2 -j4 --with-python variant=release toolset=msvc-%MSVCVERSION% address-model=%ADDR_MODEL% threading=multi link=static runtime-link=static install
   # shared libraries
   - cmd: b2 -j4 --with-python variant=release toolset=msvc-%MSVCVERSION% address-model=%ADDR_MODEL% threading=multi link=shared runtime-link=shared install
 
-
 after_build:
   - cmd: cd C:/boost
   - cmd: dir
-  - 7z a boost-python-1.73.0_%ARCH%_py%PY_VER%.zip C:/boost
-  - move boost-python-1.73.0_%ARCH%_py%PY_VER%.zip c:/projects/boost-ci/
-
+  - 7z a boost-python-%BOOST_VERSION%_%ARCH%_py%PY_VER%.zip C:/boost
+  - move boost-python-%BOOST_VERSION%_%ARCH%_py%PY_VER%.zip c:/projects/boost-ci/
 
 on_finish:
   #RDP for finish
