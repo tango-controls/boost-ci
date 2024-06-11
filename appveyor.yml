@@ -5,81 +5,81 @@ environment:
   BOOST_VERSION_UNDERSCORED: "1_85_0"
   matrix:
   # Python 3.9
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
       platform: win32
       ADDR_MODEL: 32
-      ARCH: v142_x86
-      MSVCVERSION: 14.2
+      ARCH: v143_x86
+      MSVCVERSION: 14.3
       PYTHONPATH: c:\Python39\
       PY_VER: 39
       BOOST_CFG: >-
           using python : 3.9 : c:/python39/python.exe : c:/python39/include : c:/python39/libs ;
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
       platform: x64
       ADDR_MODEL: 64
-      ARCH: v142_x64
-      MSVCVERSION: 14.2
+      ARCH: v143_x64
+      MSVCVERSION: 14.3
       PYTHONPATH: c:\Python39-x64\
       PY_VER: 39
       BOOST_CFG: >-
           using python : 3.9 : c:/python39-x64/python.exe : c:/python39-x64/include : c:/python39-x64/libs ;
 
   # Python 3.10
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
       platform: win32
       ADDR_MODEL: 32
-      ARCH: v142_x86
-      MSVCVERSION: 14.2
+      ARCH: v143_x86
+      MSVCVERSION: 14.3
       PYTHONPATH: c:\Python310\
       PY_VER: 310
       BOOST_CFG: >-
           using python : 3.10 : c:/python310/python.exe : c:/python310/include : c:/python310/libs ;
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
       platform: x64
       ADDR_MODEL: 64
-      ARCH: v142_x64
-      MSVCVERSION: 14.2
+      ARCH: v143_x64
+      MSVCVERSION: 14.3
       PYTHONPATH: c:\Python310-x64\
       PY_VER: 310
       BOOST_CFG: >-
           using python : 3.10 : c:/python310-x64/python.exe : c:/python310-x64/include : c:/python310-x64/libs ;
 
   # Python 3.11
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
       platform: win32
       ADDR_MODEL: 32
-      ARCH: v142_x86
-      MSVCVERSION: 14.2
+      ARCH: v143_x86
+      MSVCVERSION: 14.3
       PYTHONPATH: c:\Python311\
       PY_VER: 311
       BOOST_CFG: >-
           using python : 3.11 : c:/python311/python.exe : c:/python311/include : c:/python311/libs ;
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
       platform: x64
       ADDR_MODEL: 64
-      ARCH: v142_x64
-      MSVCVERSION: 14.2
+      ARCH: v143_x64
+      MSVCVERSION: 14.3
       PYTHONPATH: c:\Python311-x64\
       PY_VER: 311
       BOOST_CFG: >-
           using python : 3.11 : c:/python311-x64/python.exe : c:/python311-x64/include : c:/python311-x64/libs ;
 
   # Python 3.12
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
       platform: win32
       ADDR_MODEL: 32
-      ARCH: v142_x86
-      MSVCVERSION: 14.2
+      ARCH: v143_x86
+      MSVCVERSION: 14.3
       PYTHON_DOWNLOAD_URL: https://www.python.org/ftp/python/3.12.0/python-3.12.0.exe
       PYTHONPATH: c:\Python312\
       PY_VER: 312
       BOOST_CFG: >-
           using python : 3.12 : c:/python312/python.exe : c:/python312/include : c:/python312/libs ;
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
       platform: x64
       ADDR_MODEL: 64
-      ARCH: v142_x64
-      MSVCVERSION: 14.2
+      ARCH: v143_x64
+      MSVCVERSION: 14.3
       PYTHON_DOWNLOAD_URL: https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe
       PYTHONPATH: c:\Python312-x64\
       PY_VER: 312
