@@ -1,8 +1,8 @@
 version: 1.0.{build}
 
 environment:
-  BOOST_VERSION: "1.85.0"
-  BOOST_VERSION_UNDERSCORED: "1_85_0"
+  BOOST_VERSION: "1.86.0"
+  BOOST_VERSION_UNDERSCORED: "1_86_0"
   matrix:
   # Python 3.9
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
@@ -121,6 +121,7 @@ install:
       }
   # apply patches to Boost
   - cmd: patch -uN C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%/libs/python/src/numpy/dtype.cpp C:/projects/boost-ci/patches/support-numpy-2.0.0b1.patch
+  - cmd: patch -uN C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%/libs/python/src/numpy/dtype.cpp C:/projects/boost-ci/patches/0003-Support-numpy-2.0.patch
   # building bootstrap
   - cmd: cd C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%
   - cmd: C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%/bootstrap.bat
