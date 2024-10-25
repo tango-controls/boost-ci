@@ -1,8 +1,8 @@
 version: 1.0.{build}
 
 environment:
-  BOOST_VERSION: "1.85.0"
-  BOOST_VERSION_UNDERSCORED: "1_85_0"
+  BOOST_VERSION: "1.86.0"
+  BOOST_VERSION_UNDERSCORED: "1_86_0"
   matrix:
   # Python 3.9
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
@@ -86,6 +86,28 @@ environment:
       BOOST_CFG: >-
           using python : 3.12 : c:/python312-x64/python.exe : c:/python312-x64/include : c:/python312-x64/libs ;
 
+  # Python 3.13
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: win32
+      ADDR_MODEL: 32
+      ARCH: v142_x86
+      MSVCVERSION: 14.2
+      PYTHON_DOWNLOAD_URL: https://www.python.org/ftp/python/3.13.0/python-3.13.0.exe
+      PYTHONPATH: c:\Python313\
+      PY_VER: 313
+      BOOST_CFG: >-
+          using python : 3.13 : c:/python313/python.exe : c:/python313/include : c:/python313/libs ;
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      platform: x64
+      ADDR_MODEL: 64
+      ARCH: v142_x64
+      MSVCVERSION: 14.2
+      PYTHON_DOWNLOAD_URL: https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe
+      PYTHONPATH: c:\Python313-x64\
+      PY_VER: 313
+      BOOST_CFG: >-
+          using python : 3.13 : c:/python313-x64/python.exe : c:/python313-x64/include : c:/python313-x64/libs ;
+
 init:
   #RDP from start
   # - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
@@ -121,6 +143,7 @@ install:
       }
   # apply patches to Boost
   - cmd: patch -uN C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%/libs/python/src/numpy/dtype.cpp C:/projects/boost-ci/patches/support-numpy-2.0.0b1.patch
+  - cmd: patch -uN C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%/libs/python/src/numpy/dtype.cpp C:/projects/boost-ci/patches/0003-Support-numpy-2.0.patch
   # building bootstrap
   - cmd: cd C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%
   - cmd: C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%/bootstrap.bat
