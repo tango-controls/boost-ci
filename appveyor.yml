@@ -157,9 +157,9 @@ build:
 build_script:
   - cmd: cd C:/projects/boost_build/boost_%BOOST_VERSION_UNDERSCORED%
   # static libraries
-  - cmd: b2 -j4 --with-python variant=release toolset=msvc-%MSVCVERSION% address-model=%ADDR_MODEL% threading=multi link=static runtime-link=static install
+  - cmd: b2 -j4 --with-python variant=release toolset=msvc-%MSVCVERSION% address-model=%ADDR_MODEL% threading=multi link=static runtime-link=static install --exec-prefix=C:\Boost
   # shared libraries
-  - cmd: b2 -j4 --with-python variant=release toolset=msvc-%MSVCVERSION% address-model=%ADDR_MODEL% threading=multi link=shared runtime-link=shared install
+  - cmd: b2 -j4 --with-python variant=release toolset=msvc-%MSVCVERSION% address-model=%ADDR_MODEL% threading=multi link=shared runtime-link=shared install --exec-prefix=C:\Boost
 
 after_build:
   - cmd: cd C:/boost
